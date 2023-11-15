@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
 	FILE *file;
-
+	stack_t *stack = NULL;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	execute_instructions(file);
+	free_stack(&stack);
 	fclose(file);
-
 	return (0);
 }

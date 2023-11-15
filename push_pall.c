@@ -85,3 +85,14 @@ void execute_instructions(FILE *file)
 		}
 	}
 }
+void free_stack(stack_t **stack)
+{
+	stack_t *current = *stack;
+
+	while(current)
+	{
+		stack_t *next = current->next;
+		free(current);
+		current = next;
+	}
+}
