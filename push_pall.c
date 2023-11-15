@@ -12,6 +12,7 @@ void push(stack_t **stack, int value)
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 
@@ -70,6 +71,7 @@ void execute_instructions(FILE *file)
 				else
 				{
 					fprintf(stderr, "L%u: usage: push integer\n", line_number);
+					free_stack(&stack);
 					exit(EXIT_FAILURE);
 				}
 			}
@@ -80,6 +82,7 @@ void execute_instructions(FILE *file)
 			else
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+				free_stack(&stack);
 				exit(EXIT_FAILURE);
 			}
 		}
