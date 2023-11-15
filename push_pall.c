@@ -38,7 +38,6 @@ void pall(stack_t **stack)
 		printf("%d\n", current->n);
 		current = current->next;
 	}
-	printf("\n");
 }
 /**
  *execute_instructions - read the line by line
