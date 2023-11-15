@@ -20,7 +20,9 @@ void push(stack_t **stack, int value)
 	new_node->next = *stack;
 
 	if (*stack)
+	{
 		(*stack)->prev = new_node;
+	}
 
 	*stack = new_node;
 }
