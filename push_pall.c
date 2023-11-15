@@ -85,14 +85,22 @@ void execute_instructions(FILE *file)
 		}
 	}
 }
+/**
+ *free_stack - This is the entry point of the code
+ *@stack: drdgfs
+ *Return:0 Success
+ */
 void free_stack(stack_t **stack)
 {
 	stack_t *current = *stack;
+	stack_t *next;
 
-	while(current)
+	while (current)
 	{
 		stack_t *next = current->next;
+
 		free(current);
 		current = next;
 	}
+	*stack = NULL;
 }
