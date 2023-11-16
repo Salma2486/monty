@@ -119,6 +119,8 @@ void execute_instructions(FILE *file)
 				div_op(&head, line_number);
 			else if (strcmp(opcode, "mul") == 0)
 				mul(&head, line_number);
+			else if (strcmp(opcode, "mod") == 0)
+				mod(&head, line_number);
 			else
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
