@@ -1,10 +1,9 @@
-push 1
-push       2
-               push 3
-pall
-push -5
-pall
-push 3.5
-pall
-push oiioera
+push 0
+push -1
+push 2
+  push 3
+                   pall
+push 4
+    push 5
+      push    6-2
 pall

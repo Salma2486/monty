@@ -90,7 +90,9 @@ void execute_instructions(FILE *file)
 				{
 					num = check_for_int(value);
 					if (num != -1)
+					{
 						push(&head, num, line_number);
+					}
 				}
 				else
 				{
