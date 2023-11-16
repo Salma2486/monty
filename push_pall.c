@@ -85,6 +85,8 @@ void execute_instructions(FILE *file)
 	while (getline(&line, &len, file) != -1)
 	{
 		line_number++;
+		if (line[0] == '#')
+			continue;
 		if (sscanf(line, "%s", opcode) == 1)
 		{
 			if (strcmp(opcode, "push") == 0)
