@@ -7,23 +7,21 @@ void execute_instructions(FILE *file);
  */
 int check_for_int(char in[127])
 {
-    int val, i = 0;
+	int val, i = 0;
 
-    if (in[0] == '-')
-    {
-        i = 1;
-    }
+	if (in[0] == '-')
+		i++;
 
-    while (in[i] != '\0')
-    {
-        if (!isdigit(in[i]))
-        {
-            return -1;
-        }
-        i++;
-    }
-    val = atoi(in);
-    return val;
+	while (in[i] != '\0')
+	{
+		if (!isdigit(in[i]))
+		{
+			return -1;
+		}
+		i++;
+	}
+	val = atoi(in);
+	return val;
 }
 /**
  * push - push element to the stacks
