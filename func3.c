@@ -25,8 +25,6 @@ void pstr(stack_t **stack, unsigned int line_number)
 	stack_t *current = *stack;
 	
 	(void)line_number;
-	if (*stack == NULL)
-		printf("\n");
 	while(current || current->n != 0)
 	{
 		if (current->n > 126 || current->n < 32)
