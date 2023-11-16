@@ -1,4 +1,5 @@
 #include "monty.h"
+stack_t *head = NULL;
 /**
  * main - main function here
  * @argc: the number of argument
@@ -8,7 +9,6 @@
 int main(int argc, char *argv[])
 {
 	FILE *file;
-	stack_t *head = NULL;
 
 	if (argc != 2)
 	{
