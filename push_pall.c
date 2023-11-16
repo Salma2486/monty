@@ -72,6 +72,7 @@ void execute_instructions(FILE *file)
 				{
 					fprintf(stderr, "L%u: usage: push integer\n", line_number);
 					free_stack(&stack);
+					free(line);
 					exit(EXIT_FAILURE);
 				}
 			}
@@ -83,10 +84,12 @@ void execute_instructions(FILE *file)
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 				free_stack(&stack);
+				free(line);
 				exit(EXIT_FAILURE);
 			}
 		}
 	}
+	free(line);
 }
 /**
  *free_stack - This is the entry point of the code
