@@ -118,6 +118,8 @@ void execute_instructions(FILE *file)
 				add(&head, line_number);
 			else if (strcmp(opcode, "nop") == 0)
 				nop(&head, line_number);
+			else if (strcmp(opcode, "sub") == 0)
+                                sub(&head, line_number);
 			else
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
