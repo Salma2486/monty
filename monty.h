@@ -40,5 +40,5 @@ void pall(stack_t **stack);
 void execute_instructions(FILE *file);
 void free_stack(stack_t **stac);
 void pint(stack_t **stack, int line_number);
-void pop(stack_t **stack);
+void pop(stack_t **stack, int line_number);
 #endif

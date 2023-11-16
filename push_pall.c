@@ -80,7 +80,7 @@ void execute_instructions(FILE *file)
 			else if (strcmp(opcode, "pint") == 0)
 				pint(&head, line_number);
 			else if (strcmp(opcode, "pop") == 0)
-				pop(&head);
+				pop(&head, line_number);
 			else
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
