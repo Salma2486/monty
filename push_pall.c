@@ -22,6 +22,7 @@ int check_for_int(char in[127])
 }
 /**
  * push - push element to the stacks
+ * @line_number: kjbdkhsjd
  * @stack: stack
  * @value: the element we want to push
  * Return: its void
@@ -53,13 +54,14 @@ void push(stack_t **stack, int value, unsigned int line_number)
 }
 /**
  * pall - print all the element in stacks
+ * @line_number: oihnfeqoiw
  * @stack: the stack
  * Return: void
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
-	
+
 	(void)line_number;
 
 	while (current)
@@ -94,42 +96,49 @@ void execute_instructions(FILE *file)
 					num = check_for_int(value);
 					if (num != -1)
 						push(&head, num, line_number);
+					else
+					{
+						fprintf(stderr, "L%u: usage: push integer\n", line_number);
+						fclose(file);
+						free_stack(&head);
+						free(line);
+						exit(EXIT_FAILURE);
+					}
+				}
+				else if (strcmp(opcode, "pall") == 0)
+					pall(&head, line_number);
+				else if (strcmp(opcode, "pint") == 0)
+					pint(&head, line_number);
+				else if (strcmp(opcode, "pop") == 0)
+					pop(&head, line_number);
+				else
+				{
+					fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+					fclose(file);
+					free_stack(&head);
+					free(line);
+					exit(EXIT_FAILURE);
 				}
 			}
-			else if (strcmp(opcode, "pall") == 0)
-				pall(&head, line_number);
-			else if (strcmp(opcode, "pint") == 0)
-				pint(&head, line_number);
-			else if (strcmp(opcode, "pop") == 0)
-				pop(&head, line_number);
-			else
-			{
-				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
-				fclose(file);
-				free_stack(&head);
-				free(line);
-				exit(EXIT_FAILURE);
-			}
 		}
+		free(line);
 	}
-	free(line);
-}
-/**
- *free_stack - This is the entry point of the code
- *@stack: drdgfs
- *Return:0 Success
- */
-void free_stack(stack_t **stack)
-{
-	stack_t *current = *stack;
-
-	while (current)
+	/**
+	 *free_stack - This is the entry point of the code
+	 *@stack: drdgfs
+	 *Return:0 Success
+	 */
+	void free_stack(stack_t **stack)
 	{
-		stack_t *next = current->next;
+		stack_t *current = *stack;
 
-		free(current);
-		current = next;
+		while (current)
+		{
+			stack_t *next = current->next;
+
+			free(current);
+			current = next;
+		}
+		*stack = NULL;
 	}
-	*stack = NULL;
-}
 
