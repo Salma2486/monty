@@ -1,5 +1,20 @@
 #include "monty.h"
 void execute_instructions(FILE *file);
+int check_for_int(char in[127])
+{
+	int val, i = 0;
+
+	while(in[i] != '\0')
+	{
+		if(in[i] == '.' || ((in[i] > 57 || in[i] < 48) && in[i] != '-'))
+		{
+			return (-1);
+		}
+		i++;
+	}
+	val = atoi(in);
+	return(val);
+}
 /**
  * push - push element to the stacks
  * @stack: stack
@@ -55,7 +70,8 @@ void execute_instructions(FILE *file)
 	size_t len = 0;
 	unsigned int line_number = 0;
 	char opcode[256];
-	int value;
+	char value[127];
+	int num;
 
 	while (getline(&line, &len, file) != -1)
 	{
@@ -64,8 +80,12 @@ void execute_instructions(FILE *file)
 		{
 			if (strcmp(opcode, "push") == 0)
 			{
-				if (sscanf(line, "%*s %d", &value) == 1)
-					push(&head, value);
+				if (sscanf(line, "%*s %s", value) == 1 && check_for_int(value) != -1)
+				{
+					num = check_for_int(value);
+					if(num != -1)			
+						push(&head, num);
+				}
 				else
 				{
 					fprintf(stderr, "L%u: usage: push integer\n", line_number);
