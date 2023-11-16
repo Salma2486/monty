@@ -119,7 +119,7 @@ void execute_instructions(FILE *file)
 				mul(&head, line_number);
 			else if (strcmp(opcode, "mod") == 0)
 				mod(&head, line_number);
-			else if (strcmp(opcode, "#") == 0)
+			else if (check_for_comment(opcode) == 0)
 				continue;
 			else
 			{

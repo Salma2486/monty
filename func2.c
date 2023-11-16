@@ -95,3 +95,15 @@ void mod(stack_t **stack, unsigned int line_number)
 	*stack = (*stack)->next;
 	free(top);
 }
+/**
+ * check_for_comment - check if the word have '#'
+ * @in: the opcode
+ * Return: 0 if it found '#' or 1 if not
+ */
+int check_for_comment(char *in)
+{
+	if (in[0] == '#')
+		return (0);
+	else
+		return (1);
+}
