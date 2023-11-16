@@ -9,12 +9,9 @@ int check_for_int(char in[127])
 {
 	int val, i = 0;
 
-	if (in[0] == '-')
-		i++;
-
 	while (in[i] != '\0')
 	{
-		if (!isdigit(in[i]))
+		if (in[i] == '.' || ((in[i] > 57 || in[i] < 48) && in[i] != '-'))
 		{
 			return (-1);
 		}
