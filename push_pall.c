@@ -26,6 +26,7 @@ void push(stack_t **stack, int value)
 	}
 
 	*stack = new_node;
+	free(new_node);
 }
 /**
  * pall - print all the element in stacks
@@ -41,6 +42,7 @@ void pall(stack_t **stack)
 		printf("%d\n", current->n);
 		current = current->next;
 	}
+	free(current);
 }
 /**
  *execute_instructions - read the line by line
