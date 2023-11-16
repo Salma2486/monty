@@ -16,12 +16,12 @@ int check_for_int(char in[127])
 	{
 		if (!isdigit(in[i]))
 		{
-			return -1;
+			return (-1);
 		}
 		i++;
 	}
 	val = atoi(in);
-	return val;
+	return (val);
 }
 /**
  * push - push element to the stacks
