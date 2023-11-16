@@ -26,9 +26,11 @@ int check_for_int(char in[127])
  * @value: the element we want to push
  * Return: its void
  */
-void push(stack_t **stack, int value)
+void push(stack_t **stack, int value, unsigned int line_number)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
+
+	(void)line_number;
 
 	if (!new_node)
 	{
@@ -54,9 +56,11 @@ void push(stack_t **stack, int value)
  * @stack: the stack
  * Return: void
  */
-void pall(stack_t **stack)
+void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
+	
+	(void)line_number;
 
 	while (current)
 	{
@@ -89,19 +93,11 @@ void execute_instructions(FILE *file)
 				{
 					num = check_for_int(value);
 					if (num != -1)
-						push(&head, num);
-				}
-				else
-				{
-					fprintf(stderr, "L%u: usage: push integer\n", line_number);
-					fclose(file);
-					free_stack(&head);
-					free(line);
-					exit(EXIT_FAILURE);
+						push(&head, num, line_number);
 				}
 			}
 			else if (strcmp(opcode, "pall") == 0)
-				pall(&head);
+				pall(&head, line_number);
 			else if (strcmp(opcode, "pint") == 0)
 				pint(&head, line_number);
 			else if (strcmp(opcode, "pop") == 0)
