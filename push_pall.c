@@ -11,7 +11,7 @@ int check_for_int(char in[127])
 
 	while (in[i] != '\0')
 	{
-		if (in[i] == '.' || ((in[i] > 57 || in[i] < 48) && in[i] != '-'))
+		if (in[i] == '.' || (i > 0 && in[i] == '-') || (in[i] > 57 || in[i] < 48))
 		{
 			return (-1);
 		}
