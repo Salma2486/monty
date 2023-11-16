@@ -71,13 +71,24 @@ void swap(stack_t **stack, unsigned int line_number)
  */
 void add(stack_t **stack, unsigned int line_number)
 {
-        if (*stack == NULL || (*stack)->next == NULL)
-        {
-                fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-                free_stack(stack);
-                exit(EXIT_FAILURE);
-        }
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+		free_stack(stack);
+		exit(EXIT_FAILURE);
+	}
 
-        (*stack)->next->n += (*stack)->n;
-        pop(stack, line_number);
+	(*stack)->next->n += (*stack)->n;
+	pop(stack, line_number);
+}
+/**
+ * nop - dtzfghsrh
+ * @stack: srthryh
+ * @line_number: eargaq
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+	/* Do nothing */
 }
