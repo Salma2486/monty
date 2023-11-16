@@ -114,6 +114,8 @@ void execute_instructions(FILE *file)
 				pop(&head, line_number);
 			else if (strcmp(opcode, "swap") == 0)
                                 swap(&head, line_number);
+			else if (strcmp(opcode, "add") == 0)
+                                add(&head, line_number);
 			else
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
