@@ -7,18 +7,17 @@ void execute_instructions(FILE *file);
  */
 int check_for_int(char in[127])
 {
-	int val, i = 0;
+	int i = 0;
 
 	while (in[i] != '\0')
 	{
 		if (in[i] == '.' || ((in[i] > 57 || in[i] < 48) && in[i] != '-'))
 		{
-			return (-1);
+			return (0);
 		}
 		i++;
 	}
-	val = atoi(in);
-	return (val);
+	return (1);
 }
 /**
  * push - push element to the stacks
@@ -86,13 +85,10 @@ void execute_instructions(FILE *file)
 		{
 			if (strcmp(opcode, "push") == 0)
 			{
-				if (sscanf(line, "%*s %s", value) == 1 && check_for_int(value) != -1)
+				if (sscanf(line, "%*s %s", value) == 1 && check_for_int(value) != 0)
 				{
-					num = check_for_int(value);
-					if (num != -1)
-					{
-						push(&head, num, line_number);
-					}
+					num = atoi(value);
+					push(&head, num, line_number);
 				}
 				else
 				{
