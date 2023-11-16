@@ -96,49 +96,50 @@ void execute_instructions(FILE *file)
 					num = check_for_int(value);
 					if (num != -1)
 						push(&head, num, line_number);
-					else
-					{
-						fprintf(stderr, "L%u: usage: push integer\n", line_number);
-						fclose(file);
-						free_stack(&head);
-						free(line);
-						exit(EXIT_FAILURE);
-					}
 				}
-				else if (strcmp(opcode, "pall") == 0)
-					pall(&head, line_number);
-				else if (strcmp(opcode, "pint") == 0)
-					pint(&head, line_number);
-				else if (strcmp(opcode, "pop") == 0)
-					pop(&head, line_number);
 				else
 				{
-					fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+					fprintf(stderr, "L%u: usage: push integer\n", line_number);
 					fclose(file);
 					free_stack(&head);
 					free(line);
 					exit(EXIT_FAILURE);
 				}
 			}
+			else if (strcmp(opcode, "pall") == 0)
+				pall(&head, line_number);
+			else if (strcmp(opcode, "pint") == 0)
+				pint(&head, line_number);
+			else if (strcmp(opcode, "pop") == 0)
+				pop(&head, line_number);
+			else
+			{
+				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+				fclose(file);
+				free_stack(&head);
+				free(line);
+				exit(EXIT_FAILURE);
+			}
 		}
-		free(line);
 	}
-	/**
-	 *free_stack - This is the entry point of the code
-	 *@stack: drdgfs
-	 *Return:0 Success
-	 */
-	void free_stack(stack_t **stack)
+	free(line);
+}
+/**
+ *free_stack - This is the entry point of the code
+ *@stack: drdgfs
+ *Return:0 Success
+ */
+void free_stack(stack_t **stack)
+{
+	stack_t *current = *stack;
+
+	while (current)
 	{
-		stack_t *current = *stack;
+		stack_t *next = current->next;
 
-		while (current)
-		{
-			stack_t *next = current->next;
-
-			free(current);
-			current = next;
-		}
-		*stack = NULL;
+		free(current);
+		current = next;
 	}
+	*stack = NULL;
+}
 
