@@ -51,4 +51,5 @@ void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void _fopcodes(char *opcode, unsigned int line_number, FILE *file, char *line);
 int check_for_comment(char *in);
+void pchar(stack_t **stack, unsigned int line_number);
 #endif

@@ -28,6 +28,8 @@ void _fopcodes(char *opcode, unsigned int line_number, FILE *file, char *line)
 		mul(&head, line_number);
 	else if (strcmp(opcode, "mod") == 0)
 		mod(&head, line_number);
+	else if (strcmp(opcode, "pchar") == 0)
+		pchar(&head, line_number);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
