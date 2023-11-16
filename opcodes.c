@@ -1,8 +1,10 @@
 #include "monty.h"
 /**
- * opcode - search for right fun
+ * _fopcodes - search for right fun
  *@opcode: the opcode
  *@line_number: the line number
+ *@file: pointer to file
+ *@line: the line in file:
  */
 void _fopcodes(char *opcode, unsigned int line_number, FILE *file, char *line)
 {
