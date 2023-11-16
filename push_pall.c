@@ -78,7 +78,7 @@ void execute_instructions(FILE *file)
 			else if (strcmp(opcode, "pall") == 0)
 				pall(&head);
 			else if (strcmp(opcode, "pint") == 0)
-				pint(&head);
+				pint(&head, line_number);
 			else if (strcmp(opcode, "pop") == 0)
 				pop(&head);
 			else
