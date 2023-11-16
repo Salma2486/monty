@@ -59,37 +59,33 @@ void execute_instructions(FILE *file)
 	while (getline(&line, &len, file) != -1)
 	{
 		line_number++;
-
 		if (sscanf(line, "%s", opcode) == 1)
 		{
 			if (strcmp(opcode, "push") == 0)
 			{
 				if (sscanf(line, "%*s %d", &value) == 1)
-				{
 					push(&stack, value);
-				}
 				else
 				{
 					fprintf(stderr, "L%u: usage: push integer\n", line_number);
+					fclose(file);
 					free_stack(&stack);
 					free(line);
 					exit(EXIT_FAILURE);
 				}
 			}
 			else if (strcmp(opcode, "pall") == 0)
-			{
 				pall(&stack);
-			}
 			else
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+				fclose(file);
 				free_stack(&stack);
 				free(line);
 				exit(EXIT_FAILURE);
 			}
 		}
 	}
-	free(line);
 }
 /**
  *free_stack - This is the entry point of the code
