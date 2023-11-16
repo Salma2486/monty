@@ -1,19 +1,24 @@
 #include "monty.h"
 void execute_instructions(FILE *file);
+/**
+ * check_for_int - check for int
+ * @in: an array
+ * Return: val or -1
+ */
 int check_for_int(char in[127])
 {
 	int val, i = 0;
 
-	while(in[i] != '\0')
+	while (in[i] != '\0')
 	{
-		if(in[i] == '.' || ((in[i] > 57 || in[i] < 48) && in[i] != '-'))
+		if (in[i] == '.' || ((in[i] > 57 || in[i] < 48) && in[i] != '-'))
 		{
 			return (-1);
 		}
 		i++;
 	}
 	val = atoi(in);
-	return(val);
+	return (val);
 }
 /**
  * push - push element to the stacks
@@ -83,7 +88,7 @@ void execute_instructions(FILE *file)
 				if (sscanf(line, "%*s %s", value) == 1 && check_for_int(value) != -1)
 				{
 					num = check_for_int(value);
-					if(num != -1)			
+					if (num != -1)
 						push(&head, num);
 				}
 				else

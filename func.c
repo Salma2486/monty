@@ -3,6 +3,7 @@
 /**
  * pint - prints the value at the top of the stack
  * @stack: pointer to the stack
+ * @line_number: the number of line
  */
 void pint(stack_t **stack, int line_number)
 {
@@ -18,6 +19,7 @@ void pint(stack_t **stack, int line_number)
 /**
  * pop - Remove the top element of the stack.
  * @stack: Pointer to the stack.
+ * @line_number: the number of line
  */
 void pop(stack_t **stack, int line_number)
 {
