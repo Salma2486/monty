@@ -53,4 +53,5 @@ void _fopcodes(char *opcode, unsigned int line_number, FILE *file, char *line);
 int check_for_comment(char *in);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **doubly, unsigned int line_number);
 #endif
