@@ -1,4 +1,5 @@
 #include "monty.h"
+void execute_instructions(FILE *file);
 /**
  * push - push element to the stacks
  * @stack: stack
@@ -23,10 +24,10 @@ void push(stack_t **stack, int value)
 	if (*stack)
 	{
 		(*stack)->prev = new_node;
-		free(*stack);
 	}
 
 	*stack = new_node;
+	head = *stack;
 }
 /**
  * pall - print all the element in stacks
@@ -53,7 +54,6 @@ void execute_instructions(FILE *file)
 	char *line = NULL;
 	size_t len = 0;
 	unsigned int line_number = 0;
-	stack_t *stack = NULL;
 	char opcode[256];
 	int value;
 
@@ -65,32 +65,29 @@ void execute_instructions(FILE *file)
 			if (strcmp(opcode, "push") == 0)
 			{
 				if (sscanf(line, "%*s %d", &value) == 1)
-					push(&stack, value);
+					push(&head, value);
 				else
 				{
 					fprintf(stderr, "L%u: usage: push integer\n", line_number);
 					fclose(file);
-					free_stack(&stack);
+					free_stack(&head);
 					free(line);
 					exit(EXIT_FAILURE);
 				}
 			}
 			else if (strcmp(opcode, "pall") == 0)
-			{
-				pall(&stack);
-				free(line);
-			}
+				pall(&head);
 			else
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 				fclose(file);
-				free_stack(&stack);
+				free_stack(&head);
 				free(line);
 				exit(EXIT_FAILURE);
 			}
 		}
 	}
-	free(stack);
+	free(line);
 }
 /**
  *free_stack - This is the entry point of the code
@@ -108,5 +105,6 @@ void free_stack(stack_t **stack)
 		free(current);
 		current = next;
 	}
-	*stack = NULL;
+	head = NULL;
 }
+
