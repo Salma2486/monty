@@ -23,6 +23,7 @@ void push(stack_t **stack, int value)
 	if (*stack)
 	{
 		(*stack)->prev = new_node;
+		free(*stack);
 	}
 
 	*stack = new_node;
@@ -75,7 +76,10 @@ void execute_instructions(FILE *file)
 				}
 			}
 			else if (strcmp(opcode, "pall") == 0)
+			{
 				pall(&stack);
+				free(line);
+			}
 			else
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
@@ -86,6 +90,7 @@ void execute_instructions(FILE *file)
 			}
 		}
 	}
+	free(stack);
 }
 /**
  *free_stack - This is the entry point of the code
