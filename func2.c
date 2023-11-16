@@ -47,3 +47,23 @@ void div_op(stack_t **stack, unsigned int line_number)
 	top->next->prev = NULL;
 	free(top);
 }
+/**
+ * mul - multiplies the second top element of the stack with the top element
+ * @stack: pointer to the stack
+ * @line_number: the number of line
+ */
+void mul(stack_t **stack, unsigned int line_number)
+{
+	stack_t *top = *stack;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		free_stack(stack);
+		exit(EXIT_FAILURE);
+	}
+
+	(*stack)->next->n *= (*stack)->n;
+	*stack = (*stack)->next;
+	free(top);
+}
