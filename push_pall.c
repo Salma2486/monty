@@ -105,6 +105,6 @@ void free_stack(stack_t **stack)
 		free(current);
 		current = next;
 	}
-	head = NULL;
+	*stack = NULL;
 }
 
