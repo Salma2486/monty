@@ -34,6 +34,8 @@ void _fopcodes(char *opcode, unsigned int line_number, FILE *file, char *line)
 		pstr(&head, line_number);
 	else if (strcmp(opcode, "rotl") == 0)
 		rotl(&head, line_number);
+	else if (strcmp(opcode, "rotr") == 0)
+		rotr(&head, line_number);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
